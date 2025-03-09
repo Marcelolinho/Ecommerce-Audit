@@ -1,0 +1,35 @@
+version: '3.9'
+services:
+  erp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: my-postgres-erp
+    container_name: postgres_erp
+    environment:
+      POSTGRES_DB: erp
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: marcelo123
+    volumes:
+      - erp_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  hub:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: my-postgres-hub
+    container_name: postgres_hub
+    environment:
+      POSTGRES_DB: admin
+      POSTGRES_USER: marcelo321
+      POSTGRES_PASSWORD: senha2
+    volumes:
+      - hub_data:/var/lib/postgresql/data
+    ports:
+      - "5442:5442"
+
+volumes:
+  erp_data:
+  hub_data:
