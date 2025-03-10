@@ -1,12 +1,12 @@
 # Auditoria Teste #
 
-Para criar a imagem do banco utilize:
+Para criar os containers dos bancos utilize:
 ```bash
-    sudo docker build -t my-postgres-db .
+    sudo docker compose up --build
 ```
 
-Para rodar o container:
+Para rodar os containers:
 ```bash
-    sudo docker run -d --name my-postgres-db -p 5432:5432 my-postgres-db
+    sudo docker compose up
 ```
 
