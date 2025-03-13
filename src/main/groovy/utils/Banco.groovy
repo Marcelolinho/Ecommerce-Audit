@@ -3,18 +3,21 @@ package utils
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 
-static def hikariConfig() {
-   def erp = new HikariConfig()
-   erp.setJdbcUrl("jdbc:postgresql://localhost:5432/erp")
-   erp.setUsername("admin")
-   erp.setPassword("marcelo123")
-   erp.setDriverClassName("org.postgresql.Driver")
 
-   erp.setMaximumPoolSize(10)
-   erp.setMinimumIdle(2)
-   erp.setConnectionTimeout(30000)
-   erp.setIdleTimeout(600000)
-   erp.setMaxLifetime(1800000)
+class Banco {
+   static def hikariConfig(banco, usr, passwd) {
+      def db = new HikariConfig()
+      db.setJdbcUrl(banco)
+      db.setUsername(usr)
+      db.setPassword(passwd)
+      db.setDriverClassName("org.postgresql.Driver")
 
-   return new HikariDataSource(erp)
+      db.setMaximumPoolSize(10)
+      db.setMinimumIdle(2)
+      db.setConnectionTimeout(30000)
+      db.setIdleTimeout(600000)
+      db.setMaxLifetime(1800000)
+
+      return new HikariDataSource(db)
+   }
 }

@@ -3,12 +3,10 @@ package scripts
 import com.zaxxer.hikari.HikariDataSource
 import groovy.sql.GroovyRowResult
 import groovy.sql.Sql
-import utils.*
-
-//Conexão com o banco
+import utils.Banco
 
 //TODO entender como chamar outros arquivos em groovy
-HikariDataSource dbSeta = hikariConfig()
+HikariDataSource dbSeta = Banco.hikariConfig('jdbc:postgresql://localhost:5432/erp', 'admin', 'marcelo123')
 
 def query = new Sql(dbSeta)
 
@@ -22,4 +20,4 @@ List<GroovyRowResult> hubStock = query.rows("""select p.codigo     as codigo_pro
 
 println result
 
-//def dbHub = dbConfig.hikariConfig()
+HikariDataSource dbHub = Banco.hikariConfig('jdbc:postgresql://localhost:5432/hub', 'admin', 'marcelo321')
