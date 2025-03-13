@@ -1,49 +1,62 @@
-create database if not exists 'hub';
+create database if not exists "hub";
 
-crate table if not exists 'mpp_produto' {
+crate table if not exists "mpp_produto" (
     id int primary key not null auto_increment,
     codigo varchar(255)
 
-};
+);
 
-crate table if not exists 'mpp_produto_sku' {
+crate table if not exists "mpp_produto_sku" (
     id int primary key not null auto_increment,
     codigo varchar(255),
     id_mpp_produto int references mpp_produto(id)
 
-};
+);
 
-create table if not exists 'mpp_armazem' {
+create table if not exists "mpp_armazem" (
     id int primary key not null auto_increment,
+    descricao varchar(255)
+);
 
-};
-
-crate table if not exists 'mpp_produto_sku_armazem' {
+crate table if not exists "mpp_produto_sku_armazem" (
     id int primary key not null auto_increment,
     saldo int,
     id_mpp_produto_sku int references mpp_produto_sku(id),
     id_mpp_armazem int references mpp_armazem(id)
-};
+);
 
-create table if not exists 'mpp_entidade' {
+create table if not exists "mpp_entidade" (
     id int primary key not null auto_increment,
     id_entidade int,
     status varchar(255)
-};
+);
 
-create table if not exists 'mpp_entidade_sinc' {
+create table if not exists "mpp_entidade_sinc" (
     id int primary key not null auto_increment,
     id_entidade int references mpp_entidade(id),
-    status varchar(255),
-};
+    status varchar(255)
+);
 
-create table if not exists 'mpp_iee' {
+create table if not exists "mpp_iee" (
     id int primary key not null auto_increment,
     tabela_erp_pk int,
     tabela_erp varchar(255),
     tabela_hub_pk int,
     tabela_hub varchar(255)
-};
+);
+
+crate table if not exists "mpp_seller_produto" (
+    id int primary key not null auto_increment,
+    codigo varchar(255),
+    id_mpp_produto int references mpp_produto(id)
+);
+
+crate table if not exists "mpp_seller_produto_sku" (
+    id int primary key not null auto_increment,
+    codigo varchar(255),
+    id_mpp_seller_produto int references mpp_seller_produto(id),
+    id_mpp_produto_sku int references mpp_produto_sku(id)
+);
 
 -- TODO criar tabelas de preço e grade
 

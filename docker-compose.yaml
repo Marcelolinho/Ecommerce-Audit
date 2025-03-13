@@ -22,9 +22,9 @@ services:
     image: my-postgres-hub
     container_name: postgres_hub
     environment:
-      POSTGRES_DB: admin
-      POSTGRES_USER: marcelo321
-      POSTGRES_PASSWORD: senha2
+      POSTGRES_DB: hub
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: marcelo321
     volumes:
       - hub_data:/var/lib/postgresql/data
     ports:

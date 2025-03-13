@@ -1,26 +1,26 @@
-create database if not exists 'erp';
+create database "erp";
 
-create table if not exists 'produtos' {
+create table if not exists "produtos" (
     codigo varchar(255),
     descricao varchar(255),
     preco decimal,
-    ecommerce boolean,
-};
+    ecommerce boolean
+)
 
-create table if not exists 'grades' {
+create table if not exists "grades" (
     escala varchar(255),
     grade1 varchar(255),
     grade2 varchar(255),
     grade3 varchar(255),
     grade4 varchar(255),
     grade5 varchar(255)
-};
+);
 
-create table if not exists 'estoques' {
+create table if not exists "estoques" (
     produto varchar(255),
     empresa varchar(255),
-    quantidade int,
-};
+    quantidade int
+);
 
 -- TODO criar tabelas de vendas
 
@@ -38,8 +38,10 @@ insert into produtos (codigo, descricao, preco, ecommerce) values
 
 insert into grades (escala, grade1, grade2, grade3, grade4, grade5) values
 ('ROUPA', 'PP', 'P', 'M', 'G', 'GG'),
-('TENIS', '38', '39', '40', '41', '42'),
-('UNICO', 'U');
+('TENIS', '38', '39', '40', '41', '42');
+
+insert into grades (escala, grade1) values
+    ('UNICO', 'U')
 
 insert into estoques (produto, empresa, quantidade) values
 ('001PP', '01', 10),
@@ -55,7 +57,7 @@ insert into estoques (produto, empresa, quantidade) values
 ('00342', '01', 1),
 ('007U', '01', 2),
 ('009U', '01', 5),
-('0010U', '01', 6),
+('0010U', '01', 6)
 
 create user admin with password 'marcelo123';
-grant all privileges on erp to admin;
+grant all privileges on public to admin;

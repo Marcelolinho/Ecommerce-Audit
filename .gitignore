@@ -7,3 +7,5 @@ audit-maker.groovy
 # Dados do banco
 
 target
+
+src/main/groovy/lib
